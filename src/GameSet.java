@@ -8,15 +8,26 @@ public class GameSet {
     private long step;
     private boolean life;
 
-    public GameSet(){
-        this(100, 100, new char[100][100]);
+    public GameSet(int n, int m){
+        this(n, m, new char[n][m]);
+        for(int i=0; i<n; ++i){
+            for(int j=0; j<m; ++j){
+                this.grid[i][j] = '.';
+            }
+        }
     }
     public GameSet(int n, int m, char[][] grid){
         this.n_grid = n;
         this.m_grid = m;
-        this.grid = this.init_grid = grid;
+        this.grid = grid;
+        this.init_grid = new char[n][m];
         this.step = 0;
         this.life = true;
+        for(int i=0; i<n; ++i){
+            for(int j=0; j<m; ++j){
+                this.init_grid[i][j] = '.';
+            }
+        }
     }
 
     public void generation() {
@@ -103,8 +114,8 @@ public class GameSet {
         return grid;
     }
 
-    public void setGrid(char[][] grid) {
-        this.grid = grid;
+    public void setGrid(int i, int j, char c) {
+        this.grid[i][j] = c;
     }
 
     public long getStep() {
